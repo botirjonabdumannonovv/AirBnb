@@ -1,4 +1,4 @@
-import type ApiClientBase from "@/infrastructures/apiClients/apiClientBase/ApiClientBase";
+import ApiClientBase from "@/infrastructures/apiClients/apiClientBase/ApiClientBase";
 import {LocationEndpointsClient} from "@/infrastructures/apiClients/airBnbApiClient/brokers/LocationEndpointsClient";
 import {
     LocationCategoriesEndpointsClients
@@ -9,7 +9,7 @@ export class AirBnbApiClient {
     public readonly baseUrl: string;
 
     constructor() {
-        this.baseUrl = " http://localhost:5173/";
+        this.baseUrl = " https://localhost:5173";
 
         this.client = new ApiClientBase({
             baseURL: this.baseUrl

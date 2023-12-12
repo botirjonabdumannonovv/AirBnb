@@ -1,4 +1,5 @@
 import type ApiClientBase from "@/infrastructures/apiClients/apiClientBase/ApiClientBase";
+import type {LocationCategory} from "@/modules/locations/models/LocationCategory";
 
 export class LocationCategoriesEndpointsClients {
     private client: ApiClientBase;
