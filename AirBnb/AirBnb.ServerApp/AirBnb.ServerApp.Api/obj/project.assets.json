@@ -465,11 +465,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.Server.Api\\AirBnb.Server.Api.csproj",
-      "projectName": "AirBnb.Server.Api",
-      "projectPath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.Server.Api\\AirBnb.Server.Api.csproj",
+      "projectUniqueName": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\AirBnb.ServerApp.Api.csproj",
+      "projectName": "AirBnb.ServerApp.Api",
+      "projectPath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\AirBnb.ServerApp.Api.csproj",
       "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.Server.Api\\obj\\",
+      "outputPath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",

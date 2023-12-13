@@ -1,6 +1,7 @@
 ﻿namespace AirBnb.Server.Api.Extentions;
 
-public class FileExtentions
+public static class FileExtentions
 {
-    
+    public static string ToUrl(this string path, string? prefix = default) =>
+        $"{prefix + "/"}{path.Replace("\\", "/")}";
 }

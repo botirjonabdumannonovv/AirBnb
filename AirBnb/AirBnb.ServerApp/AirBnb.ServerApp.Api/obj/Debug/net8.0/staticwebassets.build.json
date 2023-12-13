@@ -1,0 +1,39 @@
+{
+  "Version": 1,
+  "Hash": "m0nY1CveO5d2c8iWA5ThdSZP/wm50QnrBsTHXpsTKiE=",
+  "Source": "AirBnb.ServerApp.Api",
+  "BasePath": "_content/AirBnb.ServerApp.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "AirBnb.ServerApp.Api\\wwwroot",
+      "Source": "AirBnb.ServerApp.Api",
+      "ContentRoot": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\wwwroot\\",
+      "BasePath": "_content/AirBnb.ServerApp.Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\wwwroot\\Assets\\LocationCategories\\Castle.jpg",
+      "SourceId": "AirBnb.ServerApp.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\wwwroot\\",
+      "BasePath": "_content/AirBnb.ServerApp.Api",
+      "RelativePath": "Assets/LocationCategories/Castle.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Assets\\LocationCategories\\Castle.jpg"
+    }
+  ]
+}

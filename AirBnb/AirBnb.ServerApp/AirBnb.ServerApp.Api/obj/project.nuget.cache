@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fham9fF+KEccER8K+KwtiaQjoJA1IAFP2ZTV+NrO/4CurMEogai+SAXbPllL6MFLWjfimottDE7JxvDSRFsj5Q==",
+  "dgSpecHash": "nXeuuBQehYyLGUdAbTeJ+aaVXjEfO8mHFs7KtAyboShUUFRhHwUfBVfGk9lMCflg1lMuzaHkH3NGNlvwzkcsWQ==",
   "success": true,
-  "projectFilePath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.Server.Api\\AirBnb.Server.Api.csproj",
+  "projectFilePath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\AirBnb.ServerApp.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\user\\.nuget\\packages\\microsoft.aspnetcore.openapi\\8.0.0\\microsoft.aspnetcore.openapi.8.0.0.nupkg.sha512",
     "C:\\Users\\user\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

@@ -1,0 +1,25 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Api\\wwwroot\\Assets\\LocationCategories\\Castle.jpg",
+      "PackagePath": "staticwebassets\\Assets\\LocationCategories\\Castle.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.AirBnb.ServerApp.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.AirBnb.ServerApp.Api.props",
+      "PackagePath": "build\\AirBnb.ServerApp.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.AirBnb.ServerApp.Api.props",
+      "PackagePath": "buildMultiTargeting\\AirBnb.ServerApp.Api.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.AirBnb.ServerApp.Api.props",
+      "PackagePath": "buildTransitive\\AirBnb.ServerApp.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
