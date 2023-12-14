@@ -1,19 +1,29 @@
 ﻿using System.Linq.Expressions;
+using AirBnb.ServerApp.Domain.Common.Caching;
+using AirBnb.ServerApp.Domain.Common.Query;
 using AirBnb.ServerApp.Domain.Entities;
+using AirBnb.ServerApp.Persistence.Caching.Brokers;
 using AirBnb.ServerApp.Persistence.DataContexts;
 using AirBnb.ServerApp.Persistence.Repositories.Interfaces;
 
 namespace AirBnb.ServerApp.Persistence.Repositories;
 
-public class LocationCategoryRepository: EntityRepositoryBase<LocationCategory, AppDbContext>, ILocationCategoryRepository
+public class LocationCategoryRepository(AppDbContext dbContext, ICacheBroker cacheBroker): EntityRepositoryBase<LocationCategory, AppDbContext>(
+    dbContext,
+    cacheBroker, 
+    new CacheEntryOptions()
+    ),
+    ILocationCategoryRepository
 {
-    public LocationCategoryRepository(AppDbContext dbContext) : base(dbContext)
-    {
-    }
-
     public IQueryable<LocationCategory> Get(Expression<Func<LocationCategory, bool>>? predicate = default, bool asNoTracking = false)
     {
         return base.Get(predicate, asNoTracking);
+    }
+
+    public ValueTask<IList<LocationCategory>> GetAsync(QuerySpecification<LocationCategory> querySpecification, bool asNoTracking = false,
+        CancellationToken cancellationToken = default)
+    {
+        return base.GetAsync(querySpecification, asNoTracking, cancellationToken);
     }
 
     public ValueTask<LocationCategory?> GetByIdAsync(Guid id, bool asNoTracking = false, CancellationToken cancellationToken = default)
