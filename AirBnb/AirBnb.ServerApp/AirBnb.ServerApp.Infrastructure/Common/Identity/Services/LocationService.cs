@@ -1,17 +1,24 @@
 ﻿using System.Linq.Expressions;
 using AirBnb.ServerApp.Application.Common.Services;
+using AirBnb.ServerApp.Domain.Common.Query;
 using AirBnb.ServerApp.Domain.Entities;
 using AirBnb.ServerApp.Infrastructure.Validators;
 using AirBnb.ServerApp.Persistence.Repositories.Interfaces;
 using FluentValidation;
 
-namespace AirBnb.ServerApp.Infrastructure.Common.Services;
+namespace AirBnb.ServerApp.Infrastructure.Common.Identity.Services;
 
 public class LocationService(ILocationRepository locationRepository, LocationValidator validator) : ILocationService
 {
     public IQueryable<Location> Get(Expression<Func<Location, bool>>? predicate = default, bool asNoTracking = false)
     {
         return locationRepository.Get(predicate, asNoTracking);
+    }
+
+    public ValueTask<IList<Location>> GetAsync(QuerySpecification<Location> querySpecification, bool asNoTracking = false,
+        CancellationToken cancellationToken = default)
+    {
+        return locationRepository.GetAsync(querySpecification, asNoTracking, cancellationToken);
     }
 
     public ValueTask<Location?> GetByIdAsync(Guid locationId, bool asNoTracking = false, CancellationToken cancellationToken = default)
