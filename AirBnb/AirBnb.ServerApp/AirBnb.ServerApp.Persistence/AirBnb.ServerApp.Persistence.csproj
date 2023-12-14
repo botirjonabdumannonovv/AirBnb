@@ -14,8 +14,4 @@
       <ProjectReference Include="..\AirBnb.ServerApp.Domain\AirBnb.ServerApp.Domain.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Caching\" />
-    </ItemGroup>
-
 </Project>
