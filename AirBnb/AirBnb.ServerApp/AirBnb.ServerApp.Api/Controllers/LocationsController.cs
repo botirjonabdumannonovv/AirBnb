@@ -4,7 +4,6 @@ using AirBnb.ServerApp.Domain.Common.Query;
 using AirBnb.ServerApp.Domain.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace AirBnb.Server.Api.Controllers;
 
@@ -20,7 +19,6 @@ public class LocationsController(ILocationService locationService, IMapper mappe
             new QuerySpecification<Location>(filterPagination.PageSize, filterPagination.PageToken);
 
         var result = await locationService.GetAsync(querySpecification, true, cancellationToken);
-
         return result.Any() ? Ok(mapper.Map<IEnumerable<LocationDto>>(result)) : NoContent();
     }
 
@@ -49,7 +47,6 @@ public class LocationsController(ILocationService locationService, IMapper mappe
     public async ValueTask<IActionResult> Update([FromQuery] LocationDto locationDto)
     {
         var result = await locationService.UpdateAsync(mapper.Map<Location>(locationDto));
-
         return Ok(result);
     }
 
@@ -57,7 +54,6 @@ public class LocationsController(ILocationService locationService, IMapper mappe
     public async ValueTask<IActionResult> Delete([FromRoute] Guid locationId)
     {
         await locationService.DeleteByIdAsync(locationId);
-
         return Ok();
     }
 }
