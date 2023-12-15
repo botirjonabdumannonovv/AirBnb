@@ -1,5 +1,4 @@
-﻿using System.Net.Http.Json;
-using System.Text;
+﻿using System.Text;
 using AirBnb.ServerApp.Domain.Common.Caching;
 using AirBnb.ServerApp.Infrastructure.Common.Settings;
 using AirBnb.ServerApp.Persistence.Caching.Brokers;
