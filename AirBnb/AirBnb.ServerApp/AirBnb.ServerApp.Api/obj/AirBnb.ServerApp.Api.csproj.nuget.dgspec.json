@@ -28,9 +28,6 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Domain\\AirBnb.ServerApp.Domain.csproj": {
-                "projectPath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Domain\\AirBnb.ServerApp.Domain.csproj"
-              },
               "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Infrastructure\\AirBnb.ServerApp.Infrastructure.csproj": {
                 "projectPath": "D:\\Amaliy loyiha\\AirBnb\\AirBnb\\AirBnb.ServerApp\\AirBnb.ServerApp.Infrastructure\\AirBnb.ServerApp.Infrastructure.csproj"
               }
@@ -47,25 +44,43 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "AutoMapper": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.1, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[11.3.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[11.8.1, )"
+            },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[8.0.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.EntityFrameworkCore": {
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[8.0.0, )"
             },
-            "Microsoft.Extensions.DependencyInjection": {
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[6.5.0, )"
             }
           },
           "imports": [
@@ -329,7 +344,23 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
-            "Microsoft.EntityFrameworkCore": {
+            "DeepCloner": {
+              "target": "Package",
+              "version": "[0.10.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.0, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
               "target": "Package",
               "version": "[8.0.0, )"
             }
