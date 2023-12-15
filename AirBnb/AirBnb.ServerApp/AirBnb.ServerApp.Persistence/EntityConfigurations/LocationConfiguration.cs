@@ -9,7 +9,7 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 {
     public void Configure(EntityTypeBuilder<Location> builder)
     {
-        builder.Property(location => location.ImageUrl).IsRequired();
+        builder.Property(location => location.ImageUrl).IsRequired().HasMaxLength(255);
         builder.Property(location => location.Name).IsRequired().HasMaxLength(255);
         builder.Property(location => location.BuiltYear).IsRequired();
         builder.Property(location => location.PricePerNight).IsRequired();

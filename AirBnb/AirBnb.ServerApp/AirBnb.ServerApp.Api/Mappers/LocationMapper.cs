@@ -1,4 +1,5 @@
 ﻿using AirBnb.Server.Api.Dtos;
+using AirBnb.ServerApp.Domain.Entities;
 using AutoMapper;
 
 namespace AirBnb.Server.Api.Mappers;
