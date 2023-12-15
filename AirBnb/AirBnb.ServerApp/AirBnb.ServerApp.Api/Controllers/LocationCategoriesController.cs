@@ -20,7 +20,6 @@ public class LocationCategoriesController(ILocationCategoryService locationCateg
             new QuerySpecification<LocationCategory>(filterPagination.PageSize, filterPagination.PageToken);
 
         var result = await locationCategoryService.GetAsync(querySpecification, true,cancellationToken);
-
         return result.Any() ? Ok(mapper.Map<IEnumerable<LocationCategoryDto>>(result)) : NoContent();
     }
 
@@ -49,7 +48,6 @@ public class LocationCategoriesController(ILocationCategoryService locationCateg
     public async ValueTask<IActionResult> Update([FromQuery] LocationCategoryDto locationCategoryDto)
     {
         var result = await locationCategoryService.UpdateAsync(mapper.Map<LocationCategory>(locationCategoryDto));
-
         return Ok(result);
     }
 
@@ -57,7 +55,6 @@ public class LocationCategoriesController(ILocationCategoryService locationCateg
     public async ValueTask<IActionResult> Delete([FromRoute] Guid locationCategoryId)
     {
         await locationCategoryService.DeleteByIdAsync(locationCategoryId);
-
         return Ok();
     }
 }

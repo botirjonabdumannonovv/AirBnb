@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using AirBnb.ServerApp.Domain.Entities;
+﻿using AirBnb.ServerApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
