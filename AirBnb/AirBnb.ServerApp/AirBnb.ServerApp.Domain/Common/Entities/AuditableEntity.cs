@@ -1,6 +1,6 @@
 ﻿namespace AirBnb.ServerApp.Domain.Common.Entities;
 
-public class AuditableEntity : Entity, IAuditableEntity
+public abstract class AuditableEntity : Entity, IAuditableEntity
 {
     public DateTimeOffset CreatedTime { get; set; }
     
