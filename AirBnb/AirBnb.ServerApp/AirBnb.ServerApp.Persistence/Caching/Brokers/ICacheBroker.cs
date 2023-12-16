@@ -1,5 +1,4 @@
 ﻿using AirBnb.ServerApp.Domain.Common.Caching;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace AirBnb.ServerApp.Persistence.Caching.Brokers;
 
