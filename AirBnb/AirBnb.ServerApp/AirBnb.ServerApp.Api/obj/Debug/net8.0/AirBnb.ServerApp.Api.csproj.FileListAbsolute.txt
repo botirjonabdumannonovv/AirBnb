@@ -127,3 +127,5 @@ D:\Amaliy loyiha\AirBnb\AirBnb\AirBnb.ServerApp\AirBnb.ServerApp.Api\bin\Debug\n
 D:\Amaliy loyiha\AirBnb\AirBnb\AirBnb.ServerApp\AirBnb.ServerApp.Api\bin\Debug\net8.0\AirBnb.ServerApp.Application.pdb
 D:\Amaliy loyiha\AirBnb\AirBnb\AirBnb.ServerApp\AirBnb.ServerApp.Api\bin\Debug\net8.0\AirBnb.ServerApp.Domain.pdb
 D:\Amaliy loyiha\AirBnb\AirBnb\AirBnb.ServerApp\AirBnb.ServerApp.Api\bin\Debug\net8.0\AirBnb.ServerApp.Persistence.pdb
+D:\Amaliy loyiha\AirBnb\AirBnb\AirBnb.ServerApp\AirBnb.ServerApp.Api\bin\Debug\net8.0\Data\SeedData\Listing.json
+D:\Amaliy loyiha\AirBnb\AirBnb\AirBnb.ServerApp\AirBnb.ServerApp.Api\bin\Debug\net8.0\Data\SeedData\ListingCategories.json

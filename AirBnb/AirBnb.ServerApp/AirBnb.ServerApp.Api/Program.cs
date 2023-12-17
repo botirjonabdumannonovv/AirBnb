@@ -5,8 +5,5 @@ await builder.ConfigureAsync();
 
 var app = builder.Build();
 
-app.UseCors();
-app.UseStaticFiles();
-
 await app.ConfigureAsync();
 await app.RunAsync();

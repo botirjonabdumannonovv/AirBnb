@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AirBnb.ServerApp.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231215120714_Initial")]
+    [Migration("20231217143334_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -31,31 +31,37 @@ namespace AirBnb.ServerApp.Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<int?>("BuiltYear")
-                        .IsRequired()
+                    b.Property<int>("BuiltYear")
                         .HasColumnType("integer");
+
+                    b.Property<Guid>("CategoryId")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTimeOffset?>("DeletedTime")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<float>("FeedBack")
+                        .HasColumnType("real");
+
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
-                    b.Property<int?>("PricePerNight")
-                        .IsRequired()
+                    b.Property<int>("PricePerNight")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Locations");
                 });
@@ -71,18 +77,36 @@ namespace AirBnb.ServerApp.Persistence.Migrations
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(255)
-                        .HasColumnType("character varying(255)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
                     b.ToTable("LocationCategories");
+                });
+
+            modelBuilder.Entity("AirBnb.ServerApp.Domain.Entities.Location", b =>
+                {
+                    b.HasOne("AirBnb.ServerApp.Domain.Entities.LocationCategory", "Category")
+                        .WithMany("Locations")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("AirBnb.ServerApp.Domain.Entities.LocationCategory", b =>
+                {
+                    b.Navigation("Locations");
                 });
 #pragma warning restore 612, 618
         }
