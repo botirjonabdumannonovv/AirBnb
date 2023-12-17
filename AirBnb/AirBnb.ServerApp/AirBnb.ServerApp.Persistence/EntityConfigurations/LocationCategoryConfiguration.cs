@@ -8,7 +8,11 @@ public class LocationCategoryConfiguration : IEntityTypeConfiguration<LocationCa
 {
     public void Configure(EntityTypeBuilder<LocationCategory> builder)
     {
-        builder.Property(locationCategory => locationCategory.Name).HasMaxLength(255);
-        builder.Property(locationCategory => locationCategory.ImageUrl).IsRequired();
+        builder.Property(template => template.Name).IsRequired().HasMaxLength(256);
+        builder.Property(template => template.ImageUrl).IsRequired().HasMaxLength(256);
+
+        builder
+            .HasMany(category => category.Locations)
+            .WithOne(location => location.Category);
     }
 }

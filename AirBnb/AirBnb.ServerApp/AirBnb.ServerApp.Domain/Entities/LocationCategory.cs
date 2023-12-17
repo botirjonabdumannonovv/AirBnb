@@ -4,7 +4,9 @@ namespace AirBnb.ServerApp.Domain.Entities;
 
 public class LocationCategory : SoftDeletedEntity
 {
-    public string? Name { get; set; }
-    
-    public string? ImageUrl { get; set; }
+    public string Name { get; init; } = default!;
+
+    public string ImageUrl { get; init; } = default!;
+
+    public virtual List<Location> Locations { get; } = new();
 }

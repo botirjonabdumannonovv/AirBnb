@@ -2,13 +2,19 @@
 
 namespace AirBnb.ServerApp.Domain.Entities;
 
-public class Location : SoftDeletedEntity 
+public class Location : SoftDeletedEntity
 {
-    public string? ImageUrl { get; set; }
+    public string ImageUrl { get; init; } = default!;
+
+    public string Name { get; init; } = default!;
     
-    public string? Name { get; set; }
+    public int BuiltYear { get; init; }
     
-    public int? BuiltYear { get; set; }
+    public int PricePerNight { get; init; }
     
-    public int? PricePerNight { get; set; }
+    public float FeedBack { get; set; }
+    
+    public Guid CategoryId { get; set; }
+    
+    public virtual LocationCategory? Category { get; init; }
 }

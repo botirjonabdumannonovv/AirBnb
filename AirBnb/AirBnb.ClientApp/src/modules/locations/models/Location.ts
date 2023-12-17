@@ -3,4 +3,5 @@ export class Location {
     public name!: string;
     public builtYear!: number;
     public pricePerNight!: number;
+    public FeedBack!: string;
 }
