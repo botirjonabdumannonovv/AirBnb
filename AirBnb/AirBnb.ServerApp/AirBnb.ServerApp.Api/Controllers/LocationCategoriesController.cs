@@ -1,10 +1,13 @@
-﻿using AirBnb.Server.Api.Dtos;
+﻿using AirBnB.Infrastructure.Extensions;
+using AirBnb.Server.Api.Dtos;
 using AirBnb.ServerApp.Application.Common.Services;
 using AirBnb.ServerApp.Domain.Common.Query;
 using AirBnb.ServerApp.Domain.Entities;
+using AirBnb.ServerApp.Infrastructure.Common.Settings;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 
 namespace AirBnb.Server.Api.Controllers;
 
@@ -13,48 +16,21 @@ namespace AirBnb.Server.Api.Controllers;
 public class LocationCategoriesController(ILocationCategoryService locationCategoryService, IMapper mapper) : ControllerBase
 {
     [HttpGet]
-    public async ValueTask<IActionResult> Get([FromQuery] FilterPagination filterPagination,
-        CancellationToken cancellationToken)
+    public async ValueTask<IActionResult> GetLocationCategoryService(
+        [FromQuery] FilterPagination filterPagination,
+        [FromServices] IOptions<ApiSettings> apiSettings,
+        CancellationToken cancellationToken = default)
     {
         var querySpecification =
             new QuerySpecification<LocationCategory>(filterPagination.PageSize, filterPagination.PageToken);
-
-        var result = await locationCategoryService.GetAsync(querySpecification, true,cancellationToken);
-        return result.Any() ? Ok(mapper.Map<IEnumerable<LocationCategoryDto>>(result)) : NoContent();
-    }
-
-    [HttpGet("{locationCategoryId:guid}")]
-    public async ValueTask<IActionResult> GetById([FromRoute] Guid locationCategoryId)
-    {
-        var result = await locationCategoryService.GetByIdAsync(locationCategoryId);
-        return result is not null ? Ok(mapper.Map<LocationDto>(result)) : NoContent();
-    }
-    
-    [HttpPost]
-    public async ValueTask<IActionResult> Create([FromQuery] LocationCategoryDto locationCategoryDto)
-    {
-        var result = await locationCategoryService.CreateAsync(mapper.Map<LocationCategory>(locationCategoryDto));
-
-        return CreatedAtAction(
-            nameof(GetById), new
-            {
-                Id = result.Id
-            },
-            result
-        );
-    }
-
-    [HttpPut]
-    public async ValueTask<IActionResult> Update([FromQuery] LocationCategoryDto locationCategoryDto)
-    {
-        var result = await locationCategoryService.UpdateAsync(mapper.Map<LocationCategory>(locationCategoryDto));
-        return Ok(result);
-    }
-
-    [HttpDelete("{locationCategoryId:guid}")]
-    public async ValueTask<IActionResult> Delete([FromRoute] Guid locationCategoryId)
-    {
-        await locationCategoryService.DeleteByIdAsync(locationCategoryId);
-        return Ok();
+        var result = await locationCategoryService.GetAsync(querySpecification, cancellationToken: cancellationToken);
+        var locationCategories = result.Select(locationCategory => new LocationCategoryDto
+        {
+            Id = locationCategory.Id,
+            Name = locationCategory.Name,
+            ImageUrl = locationCategory.ImageUrl.ToUrl(apiSettings.Value.ApiUrl),
+        });
+        
+        return locationCategories.Any() ? Ok(locationCategories) : BadRequest();
     }
 }

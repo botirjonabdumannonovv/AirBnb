@@ -1,9 +1,13 @@
-﻿using AirBnb.Server.Api.Dtos;
+﻿using AirBnB.Infrastructure.Extensions;
+using AirBnb.Server.Api.Dtos;
+using AirBnb.ServerApp.Application.Common.Models;
 using AirBnb.ServerApp.Application.Common.Services;
 using AirBnb.ServerApp.Domain.Common.Query;
 using AirBnb.ServerApp.Domain.Entities;
+using AirBnb.ServerApp.Infrastructure.Common.Settings;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 
 namespace AirBnb.Server.Api.Controllers;
 
@@ -12,48 +16,21 @@ namespace AirBnb.Server.Api.Controllers;
 public class LocationsController(ILocationService locationService, IMapper mapper) : ControllerBase
 {
     [HttpGet]
-    public async ValueTask<IActionResult> Get([FromQuery] FilterPagination filterPagination,
-        CancellationToken cancellationToken)
+    public async ValueTask<IActionResult> GetLocations(
+        [FromQuery] LocationFilter locationFilter,
+        [FromServices]  IOptions<ApiSettings> apiSettings,
+        CancellationToken cancellationToken = default)
     {
-        var querySpecification =
-            new QuerySpecification<Location>(filterPagination.PageSize, filterPagination.PageToken);
-
-        var result = await locationService.GetAsync(querySpecification, true, cancellationToken);
-        return result.Any() ? Ok(mapper.Map<IEnumerable<LocationDto>>(result)) : NoContent();
-    }
-
-    [HttpGet("{locationId:guid}")]
-    public async ValueTask<IActionResult> GetById([FromRoute] Guid locationId)
-    {
-        var result = await locationService.GetByIdAsync(locationId);
-        return result is not null ? Ok(mapper.Map<LocationDto>(result)) : NoContent();
-    }
-
-    [HttpPost]
-    public async ValueTask<IActionResult> Create([FromBody] LocationDto locationDto)
-    {
-        var result = await locationService.CreateAsync(mapper.Map<Location>(locationDto));
-
-        return CreatedAtAction(
-            nameof(GetById), new
-            {
-                Id = result.Id
-            },
-            result
-        );
-    }
-
-    [HttpPut]
-    public async ValueTask<IActionResult> Update([FromQuery] LocationDto locationDto)
-    {
-        var result = await locationService.UpdateAsync(mapper.Map<Location>(locationDto));
-        return Ok(result);
-    }
-
-    [HttpDelete("{locationId:guid}")]
-    public async ValueTask<IActionResult> Delete([FromRoute] Guid locationId)
-    {
-        await locationService.DeleteByIdAsync(locationId);
-        return Ok();
+        var result = await locationService.GetAsync(locationFilter.ToQuerySpecification(), cancellationToken: cancellationToken);
+        var locations = result.Select(location => new LocationDto
+        {
+            Id = location.Id,
+            ImageUrl = location.ImageUrl.ToUrl(apiSettings.Value.ApiUrl),
+            Name = location.Name,
+            BuiltYear = location.BuiltYear,
+            PricePerNight = location.PricePerNight,
+            FeedBack = location.FeedBack
+        });
+        return locations.Any() ? Ok(locations) : NoContent();
     }
 }

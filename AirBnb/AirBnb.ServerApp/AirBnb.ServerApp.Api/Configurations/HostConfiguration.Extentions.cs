@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using AirBnB.Api.Data;
 using AirBnb.ServerApp.Application.Common.Services;
 using AirBnb.ServerApp.Infrastructure.Common.Caching.Brokers;
 using AirBnb.ServerApp.Infrastructure.Common.Identity.Services;
@@ -56,6 +57,8 @@ public static partial class HostConfiguration
 
     private static WebApplicationBuilder AddBusinessLogicInfrastructure(this WebApplicationBuilder builder)
     {
+        builder.Services.Configure<ApiSettings>(builder.Configuration.GetSection(nameof(ApiSettings)));
+        
         builder.Services.AddDbContext<AppDbContext>(
             options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
         );
@@ -65,6 +68,8 @@ public static partial class HostConfiguration
 
         builder.Services.AddScoped<ILocationService, LocationService>();
         builder.Services.AddScoped<ILocationCategoryService, LocationCategoryService>();
+
+        builder.Services.AddScoped<ICacheBroker, DistributedCacheBroker>();
 
         return builder;
     }
@@ -109,7 +114,15 @@ public static partial class HostConfiguration
         return app;
     }
 
-    private static WebApplication UseDebTools(this WebApplication app)
+    private static async ValueTask<WebApplication> SeedDataAsync(this WebApplication app)
+    {
+        var serviceScope = app.Services.CreateScope();
+        await serviceScope.ServiceProvider.InitializeSeedAsync();
+
+        return app;
+    }
+    
+    private static WebApplication UseDevTools(this WebApplication app)
     {
         app.UseSwagger();
         app.UseSwaggerUI();

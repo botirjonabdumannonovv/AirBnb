@@ -18,8 +18,11 @@ public static partial class HostConfiguration
 
     public static async ValueTask<WebApplication> ConfigureAsync(this WebApplication app)
     {
-        app.UseExposers();
-        app.UseDebTools();
+        app.SeedDataAsync();
+        app.UseExposers()
+            .UseDevTools()
+            .UseCors()
+            .UseStaticFiles();
 
         return app;
     }
