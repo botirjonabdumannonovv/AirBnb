@@ -5,6 +5,32 @@
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/.vs" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/Data" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/cs" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/de" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/es" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/fr" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/it" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/ja" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/ko" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/pl" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/pt-BR" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/ru" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/tr" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/zh-Hans" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/bin/Debug/net8.0/zh-Hant" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Api/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Application/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Application/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Domain/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Domain/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Infrastructure/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Infrastructure/obj" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Persistence/bin" />
+      <excludeFolder url="file://$MODULE_DIR$/src/AirBnb.ServerApp/AirBnb.ServerApp.Persistence/obj" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
