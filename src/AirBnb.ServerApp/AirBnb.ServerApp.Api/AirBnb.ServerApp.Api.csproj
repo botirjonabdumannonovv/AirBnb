@@ -30,6 +30,9 @@
     <ItemGroup>
       <_ContentIncludedByDefault Remove="Data\SeedData\Listing.json" />
       <_ContentIncludedByDefault Remove="Data\SeedData\ListingCategories.json" />
+      <_ContentIncludedByDefault Remove="Data\SeedData\Cities.json" />
+      <_ContentIncludedByDefault Remove="Data\SeedData\Countries.json" />
+      <_ContentIncludedByDefault Remove="Data\SeedData\Listings.json" />
     </ItemGroup>
 
 </Project>

@@ -1,136 +1,74 @@
 ﻿using AirBnb.ServerApp.Domain.Entities;
-using AirBnb.ServerApp.Domain.Enums;
 using AirBnb.ServerApp.Persistence.DataContexts;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 
 namespace AirBnb.Server.Api.Data;
 
-/// <summary>
-/// Provides extension methods for seeding data.
-/// </summary>
 public static class SeedDataExtensions
 {
-    /// <summary>
-    /// Seeds the database with data.
-    /// </summary>
-    /// <param name="serviceProvider">Service provider</param>
-    public static async ValueTask SeedDataAsync(this IServiceProvider serviceProvider)
+    public static async ValueTask InitializeSeedAsync(this IServiceProvider serviceProvider)
     {
-        var dbContext = serviceProvider.GetRequiredService<AppDbContext>();
-        var webHostEnvironment = serviceProvider.GetRequiredService<IWebHostEnvironment>();
+        var locationsDbContext = serviceProvider.GetRequiredService<LocationsDbContext>();
 
-        if (!await dbContext.Countries.AnyAsync())
-            await SeedCountriesAsync(dbContext, webHostEnvironment);
-
-        if (!await dbContext.Cities.AnyAsync())
-            await SeedCitiesAsync(dbContext, webHostEnvironment);
-
-        if (!await dbContext.ListingCategories.AnyAsync())
-            await SeedListingCategoriesAsync(dbContext, webHostEnvironment);
-
-        if (dbContext.ChangeTracker.HasChanges())
-            await dbContext.SaveChangesAsync();
+        if (!await locationsDbContext.Locations.AnyAsync())
+            await locationsDbContext.SeedLocationsAsync();
+        
+        if (!await locationsDbContext.LocationCategories.AnyAsync())
+            await locationsDbContext.SeedLocationCategoryAsync();
     }
 
-    /// <summary>
-    /// Seeds the database with locations.
-    /// </summary>
-    /// <param name="dbContext">Database context to seed data</param>
-    /// <param name="webHostEnvironment">Web application environment</param>
-    private static async ValueTask SeedCountriesAsync(AppDbContext dbContext, IHostEnvironment webHostEnvironment)
+    private static async ValueTask SeedLocationsAsync(this LocationsDbContext locationsDbContext)
     {
-        var countriesFileName = Path.Combine(webHostEnvironment.ContentRootPath, "Data", "SeedData", "Countries.json");
-
-        // Retrieve countries
-        var countries = JsonConvert.DeserializeObject<List<Country>>(await File.ReadAllTextAsync(countriesFileName))!;
-
-        await dbContext.Countries.AddRangeAsync(countries);
-    }
-
-    private static async ValueTask SeedCitiesAsync(AppDbContext dbContext, IHostEnvironment webHostEnvironment)
-    {
-        var citiesFileName = Path.Combine(webHostEnvironment.ContentRootPath, "Data", "SeedData", "Cities.json");
-
-        // Retrieve cities
-        var cities = JsonConvert.DeserializeObject<List<City>>(await File.ReadAllTextAsync(citiesFileName))!;
-
-        await dbContext.Cities.AddRangeAsync(cities);
-    }
-
-    /// <summary>
-    /// Seeds the database with locations.
-    /// </summary>
-    /// <param name="dbContext">Database context to seed data</param>
-    /// <param name="webHostEnvironment">Web application environment</param>
-    private static async ValueTask SeedListingCategoriesAsync(AppDbContext dbContext, IHostEnvironment webHostEnvironment)
-    {
-        var cities = await dbContext.Cities.ToListAsync();
-
-        var listingCategoriesFileName = Path.Combine(webHostEnvironment.ContentRootPath, "Data", "SeedData", "ListingCategories.json");
-
-        // Retrieve listing categories
-        var listingCategories = JsonConvert.DeserializeObject<List<ListingCategory>>(await File.ReadAllTextAsync(listingCategoriesFileName))!;
-
-        // Set category images
-        listingCategories.ForEach(
-            listingCategory => listingCategory.ImageStorageFile = new StorageFile
-            {
-                FileName = $"{listingCategory.ImageStorageFileId}.jpg",
-                Type = StorageFileType.Image
-            }
-        );
-
-        var listingsFileName = Path.Combine(webHostEnvironment.ContentRootPath, "Data", "SeedData", "Listings.json");
-
-        // Retrieve listings
-        var listings = JsonConvert.DeserializeObject<List<Listing>>(await File.ReadAllTextAsync(listingsFileName))!;
-
-
-        // validate listing name 
-        listings.ForEach(
-            listing =>
-            {
-                if (string.IsNullOrWhiteSpace(listing.Name))
-                    throw new Exception($"Listing name is required. Listing: {JsonConvert.SerializeObject(listing)}");
-            }
-        );
-
-        // Add additional details
+        var images = new List<string>
+        {
+            "https://a0.muscache.com/im/pictures/miso/Hosting-852899544635683289/original/c627f47e-8ca9-4471-90d4-1fd987dd2362.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-40792948/original/f603aac0-729b-41e0-932a-823c27142204.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/177ed8a7-557b-480f-8319-4f8330e2c692.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-696847375839509250/original/9686a3bd-dfff-4ae6-bb51-514154308bdb.png?im_w=720",
+            "https://a0.muscache.com/im/pictures/d879c12a-9259-4080-847e-faeecfe176d9.jpg?im_w=720"
+        };
         var random = new Random();
-        listings.ForEach(
-            listing =>
+        
+        foreach (var image in images)
+        {
+            await locationsDbContext.Locations.AddAsync(new Location
             {
-                // Set built year
-                listing.BuiltDate = new DateOnly(random.Next(1900, 2021), 1, 1);
+                ImageUrl = image,
+                Name = "Tashkent, Uzbekistan",
+                BuiltYear = random.Next(2000, 2023),
+                PricePerNight = random.Next(300, 5000)
+            });
 
-                // Set category
-                listing.Category = listingCategories.First(listingCategory => listingCategory.Id == listing.CategoryId);
-
-                // Set location
-                listing.Address.CityId = !string.IsNullOrWhiteSpace(listing.Address.City)
-                    ? cities.FirstOrDefault(city => city.Name.ToLower().Equals(listing.Address.City.ToLower()))?.Id
-                    : listing.Address.CityId;
-
-                // Set media
-                listing.ImagesStorageFile = listing.ImagesStorageFile.Select(
-                        listingMedia =>
-                        {
-                            listingMedia.StorageFile = new StorageFile
-                            {
-                                FileName = $"{listingMedia.Id}.jpg",
-                                Type = StorageFileType.Image,
-                            };
-
-                            return listingMedia;
-                        }
-                    )
-                    .ToList();
-            }
-        );
-
-        // Add listing categories and listings
-        await dbContext.ListingCategories.AddRangeAsync(listingCategories);
-        await dbContext.Listings.AddRangeAsync(listings);
+            await locationsDbContext.SaveChangesAsync();
+        }
     }
+
+    private static async ValueTask SeedLocationCategoryAsync(this LocationsDbContext locationsDbContext)
+    {
+        var categoryImages = new Dictionary<string, string>();
+        categoryImages.Add("Castles","1b6a8b70-a3b6-48b5-88e1-2243d9172c06.jpg");
+        categoryImages.Add("Caves",  "4221e293-4770-4ea8-a4fa-9972158d4004.jpg");
+        categoryImages.Add("Tropical", "ee9e2a40-ffac-4db9-9080-b351efc3cfc4.jpg");
+        categoryImages.Add("Amazing Pools", "3fb523a0-b622-4368-8142-b5e03df7549b.jpg");
+        categoryImages.Add("Surfing", "957f8022-dfd7-426c-99fd-77ed792f6d7a.jpg" );
+        categoryImages.Add("Tiny Homes", "3271df99-f071-4ecf-9128-eb2d2b1f50f0.jpg");
+        categoryImages.Add("Minsus", "48b55f09-f51c-4ff5-b2c6-7f6bd4d1e049.jpg");
+        categoryImages.Add("Towers", "d721318f-4752-417d-b4fa-77da3cbc3269.jpg");
+        categoryImages.Add("Islands", "8e507f16-4943-4be9-b707-59bd38d56309.jpg");
+        categoryImages.Add("Arctic", "8b44f770-7156-4c7b-b4d3-d92549c8652f.jpg");
+        categoryImages.Add("OMG!", "c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg");
+        categoryImages.Add("Amazing Views", "c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg");
+        
+        foreach (var category in categoryImages)
+        {
+            await locationsDbContext.LocationCategories.AddAsync(new LocationCategory()
+            {
+                Name = category.Key,
+                ImageUrl = category.Value
+            });
+        }
+
+        await locationsDbContext.SaveChangesAsync();
+    }
+
 }

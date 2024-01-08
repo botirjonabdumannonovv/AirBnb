@@ -1,9 +1,8 @@
-﻿namespace AirBnb.ServerApp.Domain.Common.Entities;
+﻿using AirBnb.ServerApp.Domain.Common.Entities.Interfaces;
 
-/// <summary>
-/// Provides common entity properties
-/// </summary>
-public abstract class Entity : IEntity
+namespace AirBnb.ServerApp.Domain.Common.Entities;
+
+public class Entity : IEntity
 {
     public Guid Id { get; set; }
 }

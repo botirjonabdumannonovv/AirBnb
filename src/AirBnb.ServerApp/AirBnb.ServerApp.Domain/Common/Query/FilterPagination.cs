@@ -1,24 +1,25 @@
 ﻿namespace AirBnb.ServerApp.Domain.Common.Query;
 
-/// <summary>
-/// Represents a class for filter pagination.
-/// </summary>
 public class FilterPagination
 {
-    /// <summary>
-    /// Gets the size of the page ( limit of items in query result )
-    /// </summary>
-    public uint PageSize { get; init; }
+    public uint PageSize { get; set; }
+    
+    public uint PageToken { get; set; }
 
-    /// <summary>
-    /// Gets the page token ( identifier ) of query
-    /// </summary>
-    public uint PageToken { get; init; }
+    public FilterPagination()
+    {
+    }
+
+    public FilterPagination(uint pageSize, uint pageToken)
+    {
+        PageSize = pageSize;
+        PageToken = pageToken;
+    }
 
     public override int GetHashCode()
     {
         var hashCode = new HashCode();
-
+        
         hashCode.Add(PageSize);
         hashCode.Add(PageToken);
 
