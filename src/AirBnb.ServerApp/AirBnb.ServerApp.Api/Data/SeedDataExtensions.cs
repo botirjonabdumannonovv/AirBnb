@@ -22,13 +22,15 @@ public static class SeedDataExtensions
         var images = new List<string>
         {
             "https://a0.muscache.com/im/pictures/miso/Hosting-852899544635683289/original/c627f47e-8ca9-4471-90d4-1fd987dd2362.jpeg?im_w=720",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-40792948/original/f603aac0-729b-41e0-932a-823c27142204.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/d31ff0cf-e8b4-4f03-8ca4-3d91d93263bb.jpg?im_w=720",
             "https://a0.muscache.com/im/pictures/177ed8a7-557b-480f-8319-4f8330e2c692.jpg?im_w=720",
             "https://a0.muscache.com/im/pictures/miso/Hosting-696847375839509250/original/9686a3bd-dfff-4ae6-bb51-514154308bdb.png?im_w=720",
             "https://a0.muscache.com/im/pictures/d879c12a-9259-4080-847e-faeecfe176d9.jpg?im_w=720",
-            "https://a0.muscache.com/im/pictures/d879c12a-9259-4080-847e-faeecfe176d9.jpg?im_w=720",
-            "https://a0.muscache.com/im/pictures/miso/Hosting-852899544635683289/original/c627f47e-8ca9-4471-90d4-1fd987dd2362.jpeg?im_w=720",
-            "https://a0.muscache.com/im/pictures/177ed8a7-557b-480f-8319-4f8330e2c692.jpg?im_w=720"
+            "https://a0.muscache.com/im/pictures/a3e07d96-169a-41a4-81e1-e02109a28bfe.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-873059475609190432/original/6830ab30-8549-45aa-ad9f-b9428469f2a0.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-853189955208971108/original/aab48bd2-edb0-4ffd-87a3-f5cc7d7c3be2.jpeg?im_w=720",
+            "https://a0.muscache.com/im/pictures/1b6f3c4c-a25d-4ad5-bbf4-5042b48a2bc6.jpg?im_w=720",
+            "https://a0.muscache.com/im/pictures/miso/Hosting-569509737393877126/original/82a09673-c8c7-4a5b-b7a2-0c3f53f6f1fa.jpeg?im_w=720"
         };
         var random = new Random();
         
@@ -61,6 +63,11 @@ public static class SeedDataExtensions
         categoryImages.Add("Islands", "8e507f16-4943-4be9-b707-59bd38d56309.jpg");
         categoryImages.Add("OMG!", "c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg");
         categoryImages.Add("Amazing Views", "c5a4f6fc-c92c-4ae8-87dd-57f1ff1b89a6.jpg");
+        categoryImages.Add("Bed & breakfasts", "5ed8f7c7-2e1f-43a8-9a39-4edfc81a3325.jpg");
+        categoryImages.Add("Golfing", "6b639c8d-cf9b-41fb-91a0-91af9d7677cc.jpg");
+        categoryImages.Add("Luxe", "c8e2ed05-c666-47b6-99fc-4cb6edcde6b4.jpg");
+        categoryImages.Add("Camping", "ca25c7f3-0d1f-432b-9efa-b9f5dc6d8770.jpg");
+        categoryImages.Add("Top of the world", "6b639c8d-cf9b-41fb-91a0-91af9d7677cc.jpg");
         
         foreach (var category in categoryImages)
         {
