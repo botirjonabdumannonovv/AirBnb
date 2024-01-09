@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AirBnb.ServerApp.Persistence.Migrations.IdentityDb
 {
     [DbContext(typeof(LocationsDbContext))]
-    [Migration("20240108123343_Initial")]
+    [Migration("20240109052043_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
